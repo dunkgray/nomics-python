@@ -100,6 +100,9 @@ class Currencies(API):
         :param  str start:  Start time of the interval in RFC3339 format
 
         :param  str end:    End time of the interval in RFC3339 format. If not provided, the current time is used.
+
+        :param  str   ids:        Comma separated list of Nomics Currency IDs
+                                    to filter result rows. Optional
         '''
 
         url = self.client.get_url('currencies/sparkline')
