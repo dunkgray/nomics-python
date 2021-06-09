@@ -93,7 +93,7 @@ class Currencies(API):
         else:
             return resp.text
 
-    def get_sparkline(self, start, end = None):
+    def get_sparkline(self, start, end = None, ids = None, convert = None):
         '''
         Returns prices for all currencies within a customizable time interval suitable for sparkline charts.
 
@@ -105,7 +105,9 @@ class Currencies(API):
         url = self.client.get_url('currencies/sparkline')
         params = {
             'start': start,
-            'end': end
+            'end': end,
+            'ids': ids,
+            'convert': convert
         }
 
         resp = requests.get(url, params = params)
@@ -122,6 +124,11 @@ class Currencies(API):
         :param  str start:  Start time of the interval in RFC3339 format
 
         :param  str end:    End time of the interval in RFC3339 format. If not provided, the current time is used.
+
+
+        :param  str   convert:                  Currency to quote ticker price, market cap, and volume values.
+                                                May be a Fiat Currency or Cryptocurrency.
+                                                Default is USD.
         '''
 
         url = self.client.get_url('supplies/interval')
